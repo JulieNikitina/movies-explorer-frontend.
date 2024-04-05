@@ -9,6 +9,7 @@
   line-height: 18px;
   border: none;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 520px)  {

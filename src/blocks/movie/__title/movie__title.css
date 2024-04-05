@@ -2,13 +2,21 @@
   font-weight: 500;
   font-size: 13px;
   line-height: 16px;
-  max-height: 32px;
+  height: 32px;
+  width: 226px;
 }
 
 @media screen and (max-width: 890px)  {
   .movie__title {
     font-size: 12px;
     line-height: 15px;
+    width: 295px;
+  }
+}
+
+@media screen and (max-width: 720px)  {
+  .movies__title {
+    width: 240px;
   }
 }
 

@@ -4,19 +4,46 @@ import './SearchForm.css';
 
 
 function SearchForm(props) {
+  const { defaultSearchQuery, defaultIsShort, onSubmit, allowSubmitWithoutQuery } = props;
+  const [isShort, setIsShort] = React.useState(defaultIsShort || false);
+  const [searchQuery, setSearchQuery] = React.useState(defaultSearchQuery || "");
+  const [isValid, setIsValid] = React.useState(false);
+  const buttonClassName = isValid ? "search__submit-button" : "search__submit-button search__submit-button_inactive"
+
+  function onSearchQueryChange(e) {
+    setSearchQuery(e.currentTarget.value);
+    setIsValid(e.target.checkValidity())
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
-    props.onSubmit();
+    onSubmit({ searchQuery, isShort });
   }
+
+  function handleToggleIsShort(value) {
+    if (searchQuery || allowSubmitWithoutQuery) {
+      onSubmit({ searchQuery, isShort: value });
+    }
+    setIsShort(value);
+  }
+
   return (
     <div className="search">
       <form className="search__form" noValidate onSubmit={handleSubmit}>
         <div className="search__form-field">
-          <input id="search__form-input" required className="search__form-input"
-                 name="search-input" placeholder="Фильм"/>
-          <button className="search__submit-button" type="submit">Поиск</button>
+          <input
+            id="search__form-input"
+            value={searchQuery}
+            required
+            className="search__form-input"
+            name="search-input"
+            placeholder="Фильм"
+            onChange={onSearchQueryChange}
+          />
+          <button className={buttonClassName} type="submit">Поиск</button>
         </div>
-        <FilterCheckbox/>
+        <span className="search__form-error">{isValid ? "" : "Введите ключевое слово"}</span>
+        <FilterCheckbox defaultValue={defaultIsShort} onChange={handleToggleIsShort}/>
       </form>
     </div>
   );

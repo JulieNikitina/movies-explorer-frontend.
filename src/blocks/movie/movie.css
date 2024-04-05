@@ -1,6 +1,7 @@
 .movie {
   display: flex;
   flex-direction: column;
+  width: min-content;
 }
 
 .movie:hover .movie__delete-button {

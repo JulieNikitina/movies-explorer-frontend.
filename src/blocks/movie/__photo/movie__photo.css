@@ -1,24 +1,29 @@
 .movie__photo {
   width: 270px ;
+  height: 151px;
   margin-bottom: 3px;
+  object-fit: cover;
 }
 
 @media screen and (max-width: 890px)  {
   .movie__photo {
     margin-bottom: 5px;
     width: 339px;
+    height: 190px;
   }
 }
 
 @media screen and (max-width: 720px)  {
   .movie__photo {
     width: 500px;
+    height: 280px;
   }
 }
 
 @media screen and (max-width: 540px)  {
   .movie__photo {
     width: 300px;
+    height: 168px;
     margin-bottom: 6px;
   }
 }
